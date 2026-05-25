@@ -1331,7 +1331,7 @@ async function openArticle(index) {
 }
 
 function fetchFullArticle(url) {
-  const CORS_PROXY = 'https://corsproxy.io/?url=';
+  const CORS_PROXY = 'https://api.codetabs.com/v1/proxy?quest=';
   return fetch(CORS_PROXY + encodeURIComponent(url))
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
     .then(html => {
