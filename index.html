@@ -1304,7 +1304,7 @@ function renderArticleList() {
 // ============================================================
 // READING - ARTICLE VIEWER
 // ============================================================
-function openArticle(index) {
+async function openArticle(index) {
   if (index < 0 || index >= fetchedArticles.length) return;
   const article = fetchedArticles[index]; currentArticle = article;
   document.getElementById('reading-article-list-container').style.display = 'none';
