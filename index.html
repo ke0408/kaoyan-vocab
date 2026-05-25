@@ -1313,21 +1313,43 @@ function openArticle(index) {
   document.getElementById('reading-source').textContent = article.sourceIcon + ' ' + article.source;
   document.getElementById('reading-date').textContent = article.pubDate || '未知日期';
   document.getElementById('reading-author').textContent = article.author ? '作者: ' + article.author : '';
-  const contentHTML = article.content || article.description || '';
-  const processed = processArticleHTML(contentHTML);
+  document.getElementById('reading-content').innerHTML = '<div class="reading-loading">正在加载全文...</div>';
+  saveReadingHistory(article);
+  updateReadingVocabStats();
+  let fullText = null;
+  if (article.link) {
+    try { fullText = await fetchFullArticle(article.link); } catch(e) {}
+  }
+  const rssContent = article.content || article.description || '';
+  if (!fullText) fullText = stripHTML(rssContent);
+  const processed = processArticleHTML(fullText);
   document.getElementById('reading-content').innerHTML = processed;
   currentArticleHTML = processed;
   updateReadingVocabStats();
-  saveReadingHistory(article);
   document.getElementById('reading-content').scrollTop = 0;
   window.scrollTo(0, 0);
+}
+
+function fetchFullArticle(url) {
+  const CORS_PROXY = 'https://corsproxy.io/?url=';
+  return fetch(CORS_PROXY + encodeURIComponent(url))
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(html => {
+      let body = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '').replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, '').replace(/<header[^>]*>[\s\S]*?<\/header>/gi, '').replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, '');
+      const articleMatch = body.match(/<article[^>]*>([\s\S]*?)<\/article>/gi);
+      const src = articleMatch ? articleMatch.join(' ') : body;
+      const paragraphs = []; const pRegex = /<p[^>]*>([\s\S]*?)<\/p>/gi; let m;
+      while ((m = pRegex.exec(src)) !== null) { const t = stripHTML(m[1]).replace(/\s+/g, ' ').trim(); if (t && t.length > 20) paragraphs.push(t); }
+      if (paragraphs.length < 3) throw new Error('content too short');
+      return paragraphs.join('\n\n');
+    });
 }
 
 function processArticleHTML(html) {
   let clean = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
   let text = stripHTML(clean).replace(/\n{3,}/g, '\n\n').trim();
   const paragraphs = text.split(/\n\n+/);
-  return paragraphs.map(p => { const trimmed = p.replace(/\s+/g, ' ').trim(); if (!trimmed) return ''; return '<p>' + highlightVocabWords(trimmed) + '</p>'; }).join('\n');
+  return paragraphs.map(p => { const trimmed = p.replace(/\s+/g, ' ').trim(); if (!trimmed) return ''; return '<p>' + escapeHTML(trimmed) + '</p>'; }).join('\n');
 }
 
 function highlightVocabWords(text) {
@@ -1497,7 +1519,7 @@ function saveReadingHistory(article) {
   const state = getState(); if (!state) return;
   if (!state.readingHistory) state.readingHistory = [];
   const exists = state.readingHistory.find(h => h.title === article.title); if (exists) return;
-  state.readingHistory.unshift({ title: article.title, source: article.source, link: article.link, date: new Date().toISOString(), wordCount: document.querySelectorAll('#reading-content .vocab-word').length });
+  state.readingHistory.unshift({ title: article.title, source: article.source, link: article.link, date: new Date().toISOString() });
   if (state.readingHistory.length > 50) state.readingHistory = state.readingHistory.slice(0, 50);
   saveApp();
 }
