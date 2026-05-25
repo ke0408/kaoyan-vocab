@@ -49,7 +49,6 @@ body {
 .user-bar .switch-btn{cursor:pointer;background:none;border:1px solid var(--border);
   padding:4px 12px;border-radius:6px;font-size:12px;transition:.15s}
 .user-bar .switch-btn:hover{background:var(--primary-light);border-color:var(--primary)}
-.user-bar .online-badge{width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block}
 
 header{text-align:center;padding:24px 0 8px}
 header h1{font-size:28px;font-weight:700;letter-spacing:-.5px}
@@ -57,7 +56,7 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
 
 /* Tabs */
 .tabs{display:flex;gap:4px;background:var(--card-bg);border-radius:var(--radius);padding:4px;margin-bottom:24px;box-shadow:var(--shadow)}
-.tab-btn{flex:1;padding:10px 8px;border:none;background:transparent;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-secondary);transition:all .2s;white-space:nowrap}
+.tab-btn{flex:1;padding:10px 6px;border:none;background:transparent;border-radius:10px;cursor:pointer;font-size:12px;font-weight:500;color:var(--text-secondary);transition:all .2s;white-space:nowrap}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{background:var(--primary);color:#fff}
 .tab-content{display:none}
@@ -89,6 +88,7 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
 .btn-outline:hover{background:#f9fafb}
 .btn-sm{padding:6px 14px;font-size:13px}
 .btn-lg{padding:14px 28px;font-size:16px;border-radius:10px}
+.btn-xs{padding:4px 10px;font-size:12px;border-radius:6px}
 .btn:disabled{opacity:.5;pointer-events:none}
 .progress-bar{width:100%;max-width:460px;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .progress-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .3s}
@@ -158,7 +158,7 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;pointer-events:none;opacity:0;transition:opacity .3s;z-index:100}
 .toast.show{opacity:1}
 
-/* Heatmap Calendar */
+/* Heatmap */
 .heatmap-section{margin-top:24px;background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow)}
 .heatmap-section h3{margin-bottom:8px;font-size:15px;color:var(--text)}
 .heatmap-grid{display:flex;gap:3px;justify-content:flex-start}
@@ -173,20 +173,77 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
 .heatmap-legend span.l3{background:#239a3b}.heatmap-legend span.l4{background:#196127}
 .heatmap-weekday{font-size:10px;color:var(--text-secondary);margin-right:4px;width:13px;text-align:right;line-height:13px}
 
-/* Root/affix info */
+/* Root/affix */
 .root-info{padding:4px 10px;background:rgba(79,70,229,.08);border-radius:6px;font-size:12px;color:var(--primary);margin-top:8px}
-
-/* Speak button */
 .speak-btn{font-size:14px;padding:4px 10px;cursor:pointer}
-
-/* Due badge */
 #fc-due-badge{animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-
-/* Stage dots */
 .stage-dots{display:inline-flex;gap:3px;margin-top:4px}
 .stage-dot{width:7px;height:7px;border-radius:50%;background:var(--border)}
 .stage-dot.filled{background:var(--primary)}
+
+/* ====== READING TAB ====== */
+.reading-source-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.reading-source-bar select{flex:1;min-width:150px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;font-family:inherit;background:#fff}
+.reading-source-bar select:focus{border-color:var(--primary)}
+.reading-article-list{display:flex;flex-direction:column;gap:12px;max-height:600px;overflow-y:auto}
+.reading-article-card{background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow);cursor:pointer;transition:all .15s;border-left:4px solid transparent}
+.reading-article-card:hover{border-left-color:var(--primary);background:var(--primary-light)}
+.reading-article-card .ra-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.reading-article-card .ra-meta{font-size:12px;color:var(--text-secondary);display:flex;gap:12px;flex-wrap:wrap}
+.reading-article-card .ra-snippet{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.reading-loading{text-align:center;padding:40px;color:var(--text-secondary)}
+
+/* Reader View */
+.reading-viewer{margin-top:8px}
+.reading-viewer-header{position:sticky;top:0;background:var(--bg);padding:12px 0;margin-bottom:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;z-index:10}
+.reading-viewer-header h3{font-size:16px;font-weight:600;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.reading-meta-bar{display:flex;gap:16px;font-size:12px;color:var(--text-secondary);margin-bottom:20px;flex-wrap:wrap}
+.reading-content{font-size:16px;line-height:1.95;color:var(--text);text-align:justify;max-width:720px;margin:0 auto;word-wrap:break-word}
+.reading-content p{margin-bottom:14px}
+.reading-content img{max-width:100%;border-radius:8px;margin:8px 0}
+
+/* Vocab highlighting in reader */
+.vocab-word{display:inline;cursor:pointer;padding:1px 3px;border-radius:3px;transition:background .15s;position:relative}
+.vocab-word.unlearned{background:rgba(245,158,11,.2);border-bottom:1px dashed var(--warning)}
+.vocab-word.learned{background:rgba(22,163,74,.12);border-bottom:1px dashed var(--success)}
+.vocab-word:hover{filter:brightness(.9)}
+
+/* Word tooltip */
+.reading-tooltip{position:fixed;max-width:320px;background:#fff;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.15);padding:16px;z-index:150;font-size:14px;display:none;pointer-events:auto}
+.reading-tooltip.show{display:block}
+.reading-tooltip .rt-word{font-size:20px;font-weight:700;color:var(--text);margin-bottom:2px}
+.reading-tooltip .rt-phonetic{font-size:13px;color:var(--text-secondary);margin-bottom:8px}
+.reading-tooltip .rt-meaning{font-size:15px;color:var(--primary);font-weight:600;margin-bottom:8px}
+.reading-tooltip .rt-status{font-size:12px;color:var(--text-secondary);margin-bottom:10px}
+.reading-tooltip .rt-actions{display:flex;gap:8px}
+
+/* Paste dialog */
+.reading-paste-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:130;display:none;align-items:center;justify-content:center}
+.reading-paste-overlay.show{display:flex}
+.reading-paste-box{background:#fff;border-radius:var(--radius);padding:24px;width:90%;max-width:600px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.reading-paste-box h3{margin-bottom:12px}
+.reading-paste-box textarea{width:100%;height:220px;padding:12px;border:2px solid var(--border);border-radius:8px;font-size:14px;resize:vertical;font-family:inherit;outline:none}
+.reading-paste-box textarea:focus{border-color:var(--primary)}
+.reading-paste-box .btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+
+/* Saved words section */
+.reading-saved-section{margin-top:24px;background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.reading-saved-section h3{font-size:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.reading-saved-grid{display:flex;flex-wrap:wrap;gap:6px}
+.reading-saved-chip{padding:4px 12px;background:var(--primary-light);border-radius:16px;font-size:13px;cursor:pointer;border:1px solid transparent;transition:.15s;display:inline-flex;align-items:center}
+.reading-saved-chip:hover{border-color:var(--primary)}
+.reading-saved-chip .remove{margin-left:6px;cursor:pointer;color:var(--danger);font-weight:bold}
+.reading-vocab-stats{display:flex;gap:16px;margin-bottom:12px;font-size:13px;color:var(--text-secondary);flex-wrap:wrap}
+.reading-vocab-stats span{display:inline-flex;align-items:center;gap:4px}
+.reading-vocab-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.reading-vocab-dot.found{background:var(--success)}
+.reading-vocab-dot.unknown-v{background:var(--warning)}
+
+/* Reading history */
+.reading-history-item{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.reading-history-item .rh-title{font-weight:500;cursor:pointer;color:var(--primary)}
+.reading-history-item .rh-meta{font-size:12px;color:var(--text-secondary)}
 
 @media(max-width:600px){
   .container{padding:12px}
@@ -196,8 +253,10 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
   .flashcard-actions{flex-wrap:wrap;justify-content:center}
   .user-bar{gap:6px}
   .tabs{overflow-x:auto}
-  .tab-btn{font-size:11px;padding:8px 4px}
+  .tab-btn{font-size:10px;padding:8px 4px}
   .heatmap-cell{width:10px;height:10px}
+  .reading-content{font-size:15px;line-height:1.8}
+  .reading-tooltip{max-width:280px}
 }
 </style>
 </head>
@@ -218,20 +277,17 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
 <div class="container">
   <header>
     <h1>考研单词背诵</h1>
-    <p>大纲词汇 5484 词 · 艾宾浩斯记忆 · 多用户 · 排行榜</p>
+    <p>大纲词汇 5484 词 · 艾宾浩斯记忆 · 外刊精读 · 排行榜</p>
   </header>
 
-  <!-- User Bar -->
   <div class="user-bar" id="user-bar">
     <span>👤 <span class="uname" id="ub-name"></span></span>
-    <span class="goal-progress">
-      🎯 <span id="ub-goal-text">0/100</span>
-      <span class="goal-bar"><span class="goal-bar-fill" id="ub-goal-fill" style="width:0%"></span></span>
-    </span>
+    <span>🎯 <span id="ub-goal-text">0/100</span>
+      <span class="goal-bar"><span class="goal-bar-fill" id="ub-goal-fill" style="width:0%"></span></span></span>
     <span>⏱️ <span id="ub-time">0分钟</span></span>
     <span>🔥 <span id="ub-streak">0天</span></span>
-    <span>📅 <span id="ub-due">0个待复习</span></span>
-    <button class="switch-btn" onclick="switchUser()">🔄 切换用户</button>
+    <span>📅 <span id="ub-due">0待复习</span></span>
+    <button class="switch-btn" onclick="switchUser()">🔄 切换</button>
     <button class="switch-btn" onclick="showSettings()">⚙️</button>
   </div>
 
@@ -241,6 +297,7 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
     <button class="tab-btn" data-tab="list">单词列表</button>
     <button class="tab-btn" data-tab="stats">学习统计</button>
     <button class="tab-btn" data-tab="leaderboard">排行榜</button>
+    <button class="tab-btn" data-tab="reading">外刊精读</button>
   </div>
 
   <!-- Flashcard Tab -->
@@ -337,13 +394,13 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
       <div class="stat-card"><div class="stat-num" id="stat-due">0</div><div class="stat-label">待复习</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-errors">0</div><div class="stat-label">错词数</div></div>
     </div>
-    <div class="heatmap-section" id="heatmap-container">
+    <div class="heatmap-section">
       <h3>学习日历（最近84天）</h3>
       <div id="heatmap-grid"></div>
     </div>
     <div style="text-align:center;margin-top:16px">
-      <button class="btn btn-outline btn-sm" onclick="exportData()">📤 导出数据</button>
-      <button class="btn btn-outline btn-sm" onclick="importData()">📥 导入数据</button>
+      <button class="btn btn-outline btn-sm" onclick="exportData()">📤 导出</button>
+      <button class="btn btn-outline btn-sm" onclick="importData()">📥 导入</button>
       <input type="file" id="import-file-input" accept=".json" style="display:none" onchange="handleImportFile(event)">
     </div>
     <div style="text-align:center;margin-top:12px">
@@ -360,6 +417,43 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
     </div>
     <div style="text-align:center">
       <button class="btn btn-outline btn-sm" onclick="syncLeaderboard()">刷新排行榜</button>
+    </div>
+  </div>
+
+  <!-- ====== READING TAB ====== -->
+  <div class="tab-content" id="tab-reading">
+    <div class="reading-source-bar">
+      <select id="reading-rss-select">
+        <option value="">-- 选择文章来源 --</option>
+      </select>
+      <button class="btn btn-primary btn-sm" id="btn-fetch-rss" onclick="fetchArticles()">📡 获取文章</button>
+      <button class="btn btn-outline btn-sm" onclick="showPasteDialog()">📋 粘贴文章</button>
+    </div>
+    <div id="reading-article-list-container">
+      <div class="reading-vocab-stats" id="reading-vocab-stats" style="display:none"></div>
+      <div class="reading-article-list" id="reading-article-list">
+        <div class="reading-loading">请选择文章来源并点击"获取文章"</div>
+      </div>
+    </div>
+    <div class="reading-viewer" id="reading-viewer" style="display:none">
+      <div class="reading-viewer-header">
+        <button class="btn btn-outline btn-sm" onclick="backToArticleList()">← 返回列表</button>
+        <h3 id="reading-title"></h3>
+      </div>
+      <div class="reading-meta-bar">
+        <span id="reading-source"></span>
+        <span id="reading-date"></span>
+        <span id="reading-author"></span>
+      </div>
+      <div class="reading-content" id="reading-content"></div>
+    </div>
+    <div class="reading-saved-section" id="reading-saved-section" style="display:none">
+      <h3>我的生词本 (阅读收藏) <button class="btn btn-outline btn-sm" onclick="exportReadingWords()">📤 导出</button></h3>
+      <div class="reading-saved-grid" id="reading-saved-grid"></div>
+    </div>
+    <div class="reading-saved-section" id="reading-history-section" style="display:none">
+      <h3>阅读历史</h3>
+      <div id="reading-history-list"></div>
     </div>
   </div>
 </div>
@@ -417,6 +511,31 @@ header p{color:var(--text-secondary);font-size:14px;margin-top:4px}
   </div>
 </div>
 
+<!-- Paste Article Dialog -->
+<div class="reading-paste-overlay" id="reading-paste-overlay">
+  <div class="reading-paste-box">
+    <h3>粘贴英文文章</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">将任意英文文章文本粘贴到下方，系统会自动标记其中的考研词汇</p>
+    <textarea id="paste-textarea" placeholder="在此粘贴英文文章..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-outline btn-sm" onclick="hidePasteDialog()">取消</button>
+      <button class="btn btn-primary btn-sm" onclick="processPastedArticle()">开始阅读</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reading Word Tooltip -->
+<div class="reading-tooltip" id="reading-tooltip">
+  <div class="rt-word" id="rt-word"></div>
+  <div class="rt-phonetic" id="rt-phonetic"></div>
+  <div class="rt-meaning" id="rt-meaning"></div>
+  <div class="rt-status" id="rt-status"></div>
+  <div class="rt-actions">
+    <button class="btn btn-primary btn-xs" id="rt-save-btn" onclick="saveReadingWord()">⭐ 加入生词</button>
+    <button class="btn btn-outline btn-xs speak-btn" onclick="speakTooltipWord(event)">🔊 朗读</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -463,9 +582,7 @@ function findRoots(word) {
   const lower = word.toLowerCase();
   const found = [];
   for (const [root, meaning] of Object.entries(WORD_ROOTS)) {
-    if (lower.includes(root) && root.length >= 3) {
-      found.push({ root, meaning });
-    }
+    if (lower.includes(root) && root.length >= 3) found.push({ root, meaning });
   }
   found.sort((a, b) => b.root.length - a.root.length);
   const result = [];
@@ -508,17 +625,8 @@ function isDueForReview(state, key) {
 function countDueReviews(state) {
   const bank = getActiveWordBank();
   let c = 0;
-  bank.forEach((_, i) => {
-    const key = getWordKey(i);
-    if (isDueForReview(state, key)) c++;
-  });
+  bank.forEach((_, i) => { const key = getWordKey(i); if (isDueForReview(state, key)) c++; });
   return c;
-}
-function getActiveWordKey(state, wi) {
-  const source = state.wordSource || 'exam';
-  if (source === 'exam') return String(wi);
-  if (source === 'custom') return 'c' + wi;
-  return WORD_BANK.length > wi ? String(wi) : 'c' + (wi - WORD_BANK.length);
 }
 
 function advanceStage(state, key) {
@@ -547,33 +655,28 @@ let quizWord = null;
 let listFilter = 'all';
 let usageTimer = null;
 let usageSeconds = 0;
+let vocabWordSet = null;
+let currentArticle = null;
+let currentArticleHTML = '';
+let tooltipWord = null;
+let tooltipWordEntry = null;
+let fetchedArticles = [];
 
 function loadApp() {
   try {
     const raw = localStorage.getItem(APP_KEY);
-    if (raw) {
-      const a = JSON.parse(raw);
-      if (a.users && Object.keys(a.users).length > 0) return a;
-    }
+    if (raw) { const a = JSON.parse(raw); if (a.users && Object.keys(a.users).length > 0) return a; }
   } catch(e) {}
-  // Migrate from old APP_KEY
   try {
     const raw2 = localStorage.getItem('kaoyan_vocab_app2');
     if (raw2) {
       const a2 = JSON.parse(raw2);
       if (a2.users && Object.keys(a2.users).length > 0) {
-        // Upgrade old users
         for (const uid of Object.keys(a2.users)) {
           const u = a2.users[uid];
-          u.stage = {};
-          u.nextReview = {};
-          u.errorCounts = {};
-          u.studyDays = {};
-          u.customWords = [];
-          u.notifyEnabled = true;
-          u.wordSource = 'exam';
-          u.lbToken = '';
-          // Convert old known to stage 6 (graduated)
+          u.stage = {}; u.nextReview = {}; u.errorCounts = {}; u.studyDays = {};
+          u.customWords = []; u.notifyEnabled = true; u.wordSource = 'exam'; u.lbToken = '';
+          u.readingWords = {}; u.readingHistory = [];
           for (const k of Object.keys(u.known || {})) { u.stage[k] = 6; u.nextReview[k] = Infinity; }
         }
         localStorage.removeItem('kaoyan_vocab_app2');
@@ -584,9 +687,7 @@ function loadApp() {
   return { currentUser: null, users: {} };
 }
 
-function saveApp() {
-  localStorage.setItem(APP_KEY, JSON.stringify(app));
-}
+function saveApp() { localStorage.setItem(APP_KEY, JSON.stringify(app)); }
 
 function getState() {
   if (!currentUser) return null;
@@ -600,36 +701,23 @@ function getState() {
   if (state.notifyEnabled === undefined) state.notifyEnabled = true;
   if (!state.wordSource) state.wordSource = 'exam';
   if (state.lbToken === undefined) state.lbToken = '';
+  if (!state.readingWords) state.readingWords = {};
+  if (!state.readingHistory) state.readingHistory = [];
   return state;
 }
 
 function initUser(uid) {
   app.users[uid] = {
-    name: '',
-    goal: 100,
-    createdAt: new Date().toISOString(),
-    totalTime: 0,
-    lastSeen: new Date().toISOString(),
-    known: {},
-    unknown: {},
-    reviewedToday: 0,
-    lastReviewDate: '',
-    streak: 0,
-    stage: {},
-    nextReview: {},
-    errorCounts: {},
-    studyDays: {},
-    customWords: [],
-    notifyEnabled: true,
-    wordSource: 'exam',
-    lbToken: '',
+    name: '', goal: 100, createdAt: new Date().toISOString(),
+    totalTime: 0, lastSeen: new Date().toISOString(),
+    known: {}, unknown: {}, reviewedToday: 0, lastReviewDate: '', streak: 0,
+    stage: {}, nextReview: {}, errorCounts: {}, studyDays: {},
+    customWords: [], notifyEnabled: true, wordSource: 'exam', lbToken: '',
+    readingWords: {}, readingHistory: [],
   };
 }
 
-function getWordSource() {
-  const state = getState();
-  return (state && state.wordSource) || 'exam';
-}
+function getWordSource() { const state = getState(); return (state && state.wordSource) || 'exam'; }
 
 function getActiveWordBank() {
   const state = getState();
@@ -654,87 +742,45 @@ function getWordKey(wi) {
 // ============================================================
 // LOGIN / USER MANAGEMENT
 // ============================================================
-function showLogin() {
-  document.getElementById('login-overlay').style.display = '';
-  document.getElementById('login-name').focus();
-}
+function showLogin() { document.getElementById('login-overlay').style.display = ''; document.getElementById('login-name').focus(); }
 
 function requestNotifyPermission() {
-  if ('Notification' in window && Notification.permission === 'default') {
-    Notification.requestPermission();
-  }
+  if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
 }
 
 function doLogin() {
   const name = document.getElementById('login-name').value.trim();
   const goal = parseInt(document.getElementById('login-goal').value) || 100;
   if (!name) { showToast('请输入名字'); return; }
-
   const uid = 'u' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
   initUser(uid);
   app.users[uid].name = name;
   app.users[uid].goal = Math.max(10, Math.min(1000, goal));
-  app.currentUser = uid;
-  currentUser = uid;
+  app.currentUser = uid; currentUser = uid;
   saveApp();
   document.getElementById('login-overlay').style.display = 'none';
-  startSession();
-  refreshAll();
-  updateUserBar();
+  startSession(); refreshAll(); updateUserBar();
   requestNotifyPermission();
   showToast(`欢迎，${name}！`);
 }
 
-function startSession() {
-  const state = getState();
-  if (!state) return;
-  state.lastSeen = new Date().toISOString();
-  saveApp();
-  checkIn();
-  startUsageTimer();
-  maybeNotify(state);
-}
+function startSession() { const state = getState(); if (!state) return; state.lastSeen = new Date().toISOString(); saveApp(); checkIn(); startUsageTimer(); maybeNotify(state); }
 
 function switchUser() {
   const users = Object.entries(app.users);
-  if (users.length <= 1) {
-    document.getElementById('login-overlay').style.display = '';
-    return;
-  }
-
+  if (users.length <= 1) { document.getElementById('login-overlay').style.display = ''; return; }
   const choice = prompt(`选择要切换的用户（输入序号）：\n${users.map(([uid, u], i) => `${i + 1}. ${u.name || uid} - ${u.lastReviewDate ? '最后学习: ' + new Date(u.lastReviewDate).toLocaleDateString() : '新用户'}`).join('\n')}\n\n0. 添加新用户`);
-
   if (choice === null) return;
   const idx = parseInt(choice);
   if (isNaN(idx)) return;
-
-  if (idx === 0) {
-    document.getElementById('login-overlay').style.display = '';
-    document.getElementById('login-name').focus();
-    return;
-  }
-
-  if (idx >= 1 && idx <= users.length) {
-    const newUid = users[idx - 1][0];
-    switchToUser(newUid);
-  }
+  if (idx === 0) { document.getElementById('login-overlay').style.display = ''; document.getElementById('login-name').focus(); return; }
+  if (idx >= 1 && idx <= users.length) switchToUser(users[idx - 1][0]);
 }
 
-function switchToUser(uid) {
-  stopUsageTimer();
-  app.currentUser = uid;
-  currentUser = uid;
-  saveApp();
-  currentIndex = 0;
-  startSession();
-  refreshAll();
-  updateUserBar();
-  showToast(`已切换到 ${app.users[uid].name || uid}`);
-}
+function switchToUser(uid) { stopUsageTimer(); app.currentUser = uid; currentUser = uid; vocabWordSet = null; saveApp(); currentIndex = 0; startSession(); refreshAll(); updateUserBar(); showToast(`已切换到 ${app.users[uid].name || uid}`); }
 
 function showSettings() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   document.getElementById('settings-overlay').style.display = '';
   document.getElementById('set-name').value = state.name;
   document.getElementById('set-goal').value = state.goal;
@@ -744,72 +790,46 @@ function showSettings() {
   document.getElementById('set-lb-token').value = state.lbToken || '';
 }
 
-function hideSettings() {
-  document.getElementById('settings-overlay').style.display = 'none';
-}
+function hideSettings() { document.getElementById('settings-overlay').style.display = 'none'; }
 
 function saveSettings() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   state.name = document.getElementById('set-name').value.trim() || state.name;
   state.goal = Math.max(10, Math.min(1000, parseInt(document.getElementById('set-goal').value) || 100));
   state.notifyEnabled = document.getElementById('set-notify').checked;
   state.wordSource = document.getElementById('set-word-source').value;
   state.lbToken = document.getElementById('set-lb-token').value.trim();
-  saveApp();
-  hideSettings();
-  updateUserBar();
-  currentIndex = 0;
-  currentFilter = 'all';
+  vocabWordSet = null;
+  saveApp(); hideSettings(); updateUserBar();
+  currentIndex = 0; currentFilter = 'all';
   document.querySelectorAll('#flashcard-filter .mode-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('#flashcard-filter [data-filter="all"]').classList.add('active');
-  refreshAll();
-  showToast('设置已保存');
+  const allBtn = document.querySelector('#flashcard-filter [data-filter="all"]');
+  if (allBtn) allBtn.classList.add('active');
+  refreshAll(); showToast('设置已保存');
 }
 
 // ============================================================
 // USAGE TIMER
 // ============================================================
 function startUsageTimer() {
-  stopUsageTimer();
-  usageSeconds = 0;
+  stopUsageTimer(); usageSeconds = 0;
   usageTimer = setInterval(() => {
     usageSeconds++;
     const state = getState();
-    if (state) {
-      state.totalTime = (state.totalTime || 0) + 1;
-      if (usageSeconds % 10 === 0) {
-        saveApp();
-        syncToLeaderboard();
-      }
-      if (usageSeconds % 60 === 0) {
-        maybeNotify(state);
-      }
-    }
+    if (state) { state.totalTime = (state.totalTime || 0) + 1; if (usageSeconds % 10 === 0) { saveApp(); syncToLeaderboard(); } if (usageSeconds % 60 === 0) { maybeNotify(state); } }
     updateUserBar();
   }, 1000);
 }
 
-function stopUsageTimer() {
-  if (usageTimer) { clearInterval(usageTimer); usageTimer = null; }
-  const state = getState();
-  if (state) saveApp();
-}
-
-function getUsageTimeString(seconds) {
-  if (seconds < 60) return seconds + '秒';
-  if (seconds < 3600) return Math.floor(seconds / 60) + '分钟';
-  return (seconds / 3600).toFixed(1) + '小时';
-}
+function stopUsageTimer() { if (usageTimer) { clearInterval(usageTimer); usageTimer = null; } const state = getState(); if (state) saveApp(); }
+function getUsageTimeString(seconds) { if (seconds < 60) return seconds + '秒'; if (seconds < 3600) return Math.floor(seconds / 60) + '分钟'; return (seconds / 3600).toFixed(1) + '小时'; }
 
 // ============================================================
 // DAILY NOTIFICATION
 // ============================================================
 function maybeNotify(state) {
-  if (!state) return;
-  if (!state.notifyEnabled) return;
-  if (!('Notification' in window)) return;
-  if (Notification.permission !== 'granted') return;
+  if (!state || !state.notifyEnabled) return;
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
   if (state.reviewedToday >= state.goal) return;
   const h = new Date().getHours();
   if (h >= 20 && h <= 22) {
@@ -827,26 +847,25 @@ function maybeNotify(state) {
 // ============================================================
 function speakWord(e) {
   if (e) e.stopPropagation();
-  const wordEl = document.getElementById('fc-word');
-  const word = wordEl.textContent;
+  const wordEl = document.getElementById('fc-word'); const word = wordEl.textContent;
   if (!word || word === 'loading...' || word === '暂无单词') return;
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.85;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
+  const utterance = new SpeechSynthesisUtterance(word); utterance.lang = 'en-US'; utterance.rate = 0.85;
+  window.speechSynthesis.cancel(); window.speechSynthesis.speak(utterance);
 }
 
 function speakQuizWord(e) {
   if (e) e.stopPropagation();
   if (quizWord === null && quizWord !== 0) return;
-  const bank = getActiveWordBank();
-  const word = bank[quizWord].word;
-  const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.85;
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
+  const bank = getActiveWordBank(); const word = bank[quizWord].word;
+  const utterance = new SpeechSynthesisUtterance(word); utterance.lang = 'en-US'; utterance.rate = 0.85;
+  window.speechSynthesis.cancel(); window.speechSynthesis.speak(utterance);
+}
+
+function speakTooltipWord(e) {
+  if (e) e.stopPropagation();
+  if (!tooltipWord) return;
+  const utterance = new SpeechSynthesisUtterance(tooltipWord); utterance.lang = 'en-US'; utterance.rate = 0.85;
+  window.speechSynthesis.cancel(); window.speechSynthesis.speak(utterance);
 }
 
 // ============================================================
@@ -859,7 +878,7 @@ function updateUserBar() {
     document.getElementById('ub-goal-text').textContent = '0/0';
     document.getElementById('ub-time').textContent = '0分钟';
     document.getElementById('ub-streak').textContent = '0天';
-    document.getElementById('ub-due').textContent = '0个待复习';
+    document.getElementById('ub-due').textContent = '0待复习';
     return;
   }
   document.getElementById('ub-name').textContent = state.name || currentUser;
@@ -867,67 +886,41 @@ function updateUserBar() {
   document.getElementById('ub-goal-fill').style.width = Math.min(100, (state.reviewedToday / state.goal) * 100) + '%';
   document.getElementById('ub-time').textContent = getUsageTimeString(state.totalTime || 0);
   document.getElementById('ub-streak').textContent = (state.streak || 0) + '天';
-  document.getElementById('ub-due').textContent = countDueReviews(state) + '个待复习';
+  document.getElementById('ub-due').textContent = countDueReviews(state) + '待复习';
 }
 
 // ============================================================
 // TOAST
 // ============================================================
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(t._timeout);
-  t._timeout = setTimeout(() => t.classList.remove('show'), 1800);
-}
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._timeout); t._timeout = setTimeout(() => t.classList.remove('show'), 1800); }
 
 // ============================================================
 // CHECK-IN
 // ============================================================
 function checkIn() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   const today = new Date().toDateString();
   if (state.lastReviewDate !== today) {
     if (state.lastReviewDate) {
       const yesterday = new Date(Date.now() - 86400000).toDateString();
-      if (state.lastReviewDate === yesterday) state.streak++;
-      else state.streak = 1;
-    } else {
-      state.streak = 1;
-    }
-    state.lastReviewDate = today;
-    state.reviewedToday = 0;
-    saveApp();
+      if (state.lastReviewDate === yesterday) state.streak++; else state.streak = 1;
+    } else { state.streak = 1; }
+    state.lastReviewDate = today; state.reviewedToday = 0; saveApp();
   }
 }
 
-function recordStudyDay(state) {
-  const key = new Date().toISOString().slice(0, 10);
-  state.studyDays[key] = (state.studyDays[key] || 0) + 1;
-}
-
-function recordError(state, key) {
-  state.errorCounts[key] = (state.errorCounts[key] || 0) + 1;
-}
+function recordStudyDay(state) { const key = new Date().toISOString().slice(0, 10); state.studyDays[key] = (state.studyDays[key] || 0) + 1; }
+function recordError(state, key) { state.errorCounts[key] = (state.errorCounts[key] || 0) + 1; }
 
 // ============================================================
 // UTILS
 // ============================================================
 function getFilteredIndices(filter) {
-  const state = getState();
-  const bank = getActiveWordBank();
-  const indices = [];
+  const state = getState(); const bank = getActiveWordBank(); const indices = [];
   bank.forEach((_, i) => {
     const key = getWordKey(i);
-    if (filter === 'known' && state) {
-      const stage = getWordStage(state, key);
-      if (stage >= SR_GRADUATED || state.known[i]) indices.push(i);
-    }
-    else if (filter === 'unknown' && state) {
-      const stage = getWordStage(state, key);
-      if (stage < SR_GRADUATED && !state.known[i]) indices.push(i);
-    }
+    if (filter === 'known' && state) { const stage = getWordStage(state, key); if (stage >= SR_GRADUATED || state.known[i]) indices.push(i); }
+    else if (filter === 'unknown' && state) { const stage = getWordStage(state, key); if (stage < SR_GRADUATED && !state.known[i]) indices.push(i); }
     else if (filter === 'review' && state && isDueForReview(state, key)) indices.push(i);
     else if (filter === 'wrong' && state && (state.errorCounts[key] || 0) > 0) indices.push(i);
     else if (filter === 'all') indices.push(i);
@@ -938,13 +931,10 @@ function getFilteredIndices(filter) {
 // ============================================================
 // FLASHCARD
 // ============================================================
-function getFlashcardList() {
-  return getFilteredIndices(currentFilter);
-}
+function getFlashcardList() { return getFilteredIndices(currentFilter); }
 
 function showCard() {
-  const list = getFlashcardList();
-  const bank = getActiveWordBank();
+  const list = getFlashcardList(); const bank = getActiveWordBank();
   if (list.length === 0) {
     document.getElementById('fc-word').textContent = '暂无单词';
     document.getElementById('fc-phonetic').textContent = '';
@@ -959,12 +949,7 @@ function showCard() {
   }
   if (currentIndex >= list.length) currentIndex = 0;
   if (currentIndex < 0) currentIndex = list.length - 1;
-
-  const wi = list[currentIndex];
-  const w = bank[wi];
-  const state = getState();
-  const key = getWordKey(wi);
-
+  const wi = list[currentIndex]; const w = bank[wi]; const state = getState(); const key = getWordKey(wi);
   document.getElementById('fc-word').textContent = w.word;
   document.getElementById('fc-phonetic').textContent = w.phonetic || '';
   document.getElementById('fc-meaning').textContent = w.meaning;
@@ -972,32 +957,14 @@ function showCard() {
   document.getElementById('fc-progress-text').textContent = `${currentIndex + 1} / ${list.length}`;
   document.getElementById('fc-known-count').textContent = '已掌握: ' + (state ? Object.keys(state.known).length : 0);
   document.getElementById('fc-progress-fill').style.width = `${((currentIndex + 1) / list.length) * 100}%`;
-
-  // Roots
-  const roots = findRoots(w.word);
-  const rootEl = document.getElementById('fc-root');
-  if (roots.length > 0) {
-    rootEl.style.display = '';
-    rootEl.innerHTML = '词根: ' + roots.map(r => `${r.root}(${r.meaning})`).join(' | ');
-  } else {
-    rootEl.style.display = 'none';
-  }
-
-  // Stage dots
+  const roots = findRoots(w.word); const rootEl = document.getElementById('fc-root');
+  if (roots.length > 0) { rootEl.style.display = ''; rootEl.innerHTML = '词根: ' + roots.map(r => `${r.root}(${r.meaning})`).join(' | '); }
+  else { rootEl.style.display = 'none'; }
   const stage = getWordStage(state, key);
-  const stageDots = document.getElementById('fc-stage-dots');
-  stageDots.innerHTML = SR_STAGES.map((s, i) => `<span class="stage-dot${i <= stage ? ' filled' : ''}"></span>`).join('');
-
-  // Due badge
-  const dueCount = countDueReviews(state);
-  const badge = document.getElementById('fc-due-badge');
-  if (currentFilter === 'review' && dueCount > 0) {
-    badge.style.display = '';
-    badge.textContent = dueCount;
-  } else {
-    badge.style.display = 'none';
-  }
-
+  document.getElementById('fc-stage-dots').innerHTML = SR_STAGES.map((s, i) => `<span class="stage-dot${i <= stage ? ' filled' : ''}"></span>`).join('');
+  const dueCount = countDueReviews(state); const badge = document.getElementById('fc-due-badge');
+  if (currentFilter === 'review' && dueCount > 0) { badge.style.display = ''; badge.textContent = dueCount; }
+  else { badge.style.display = 'none'; }
   const isKnown = state && (getWordStage(state, key) >= SR_GRADUATED || state.known[wi]);
   document.getElementById('btn-known').style.opacity = isKnown ? '1' : '0.5';
   document.getElementById('btn-unknown').style.opacity = isKnown ? '0.5' : '1';
@@ -1006,187 +973,78 @@ function showCard() {
 
 function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
 
-function nextCard(e) {
-  if (e) e.stopPropagation();
-  const list = getFlashcardList();
-  if (list.length === 0) return;
-  currentIndex = (currentIndex + 1) % list.length;
-  showCard();
-}
-
-function prevCard(e) {
-  if (e) e.stopPropagation();
-  const list = getFlashcardList();
-  if (list.length === 0) return;
-  currentIndex = (currentIndex - 1 + list.length) % list.length;
-  showCard();
-}
+function nextCard(e) { if (e) e.stopPropagation(); const list = getFlashcardList(); if (list.length === 0) return; currentIndex = (currentIndex + 1) % list.length; showCard(); }
+function prevCard(e) { if (e) e.stopPropagation(); const list = getFlashcardList(); if (list.length === 0) return; currentIndex = (currentIndex - 1 + list.length) % list.length; showCard(); }
 
 function markWord(status, e) {
   if (e) e.stopPropagation();
-  const state = getState();
-  if (!state) return;
-  const list = getFlashcardList();
-  if (list.length === 0) return;
-  const wi = list[currentIndex];
-  const key = getWordKey(wi);
-
-  if (status === 'known') {
-    state.known[wi] = true;
-    delete state.unknown[wi];
-    advanceStage(state, key);
-  } else {
-    state.unknown[wi] = true;
-    delete state.known[wi];
-    resetStage(state, key);
-    recordError(state, key);
-  }
-  state.reviewedToday++;
-  recordStudyDay(state);
-  checkIn();
-  saveApp();
-  updateUserBar();
-  showCard();
+  const state = getState(); if (!state) return;
+  const list = getFlashcardList(); if (list.length === 0) return;
+  const wi = list[currentIndex]; const key = getWordKey(wi);
+  if (status === 'known') { state.known[wi] = true; delete state.unknown[wi]; advanceStage(state, key); }
+  else { state.unknown[wi] = true; delete state.known[wi]; resetStage(state, key); recordError(state, key); }
+  state.reviewedToday++; recordStudyDay(state); checkIn(); saveApp(); updateUserBar(); showCard();
 }
 
 // ============================================================
 // QUIZ
 // ============================================================
-function pickQuizWord() {
-  const pool = getFilteredIndices('unknown');
-  const src = pool.length > 0 ? pool : getFilteredIndices('all');
-  if (src.length === 0) return null;
-  return src[Math.floor(Math.random() * src.length)];
-}
+function pickQuizWord() { const pool = getFilteredIndices('unknown'); const src = pool.length > 0 ? pool : getFilteredIndices('all'); if (src.length === 0) return null; return src[Math.floor(Math.random() * src.length)]; }
 
 function generateOptions(correctIdx) {
-  const bank = getActiveWordBank();
-  const correctWord = bank[correctIdx].word;
+  const bank = getActiveWordBank(); const correctWord = bank[correctIdx].word;
   const options = new Set([correctWord]);
-  while (options.size < 4) {
-    const ri = Math.floor(Math.random() * bank.length);
-    if (ri !== correctIdx) options.add(bank[ri].word);
-  }
+  while (options.size < 4) { const ri = Math.floor(Math.random() * bank.length); if (ri !== correctIdx) options.add(bank[ri].word); }
   return [...options].sort(() => Math.random() - 0.5);
 }
 
-let quizOptions = [];
-let quizAnswered = false;
+let quizOptions = []; let quizAnswered = false;
 
 function showQuiz() {
   quizAnswered = false;
-  const wi = pickQuizWord();
-  if (wi === null) return;
-  quizWord = wi;
-  const bank = getActiveWordBank();
-  const w = bank[wi];
+  const wi = pickQuizWord(); if (wi === null) return;
+  quizWord = wi; const bank = getActiveWordBank(); const w = bank[wi];
   document.getElementById('quiz-meaning').textContent = w.meaning;
   document.getElementById('quiz-input').value = '';
   document.getElementById('quiz-input').className = 'quiz-input';
   document.getElementById('quiz-feedback').textContent = '';
   document.getElementById('quiz-submit').style.display = '';
   document.getElementById('quiz-next').style.display = 'none';
-  document.getElementById('quiz-input').style.display = '';
-
-  if (quizMode === 'spell') {
-    document.getElementById('quiz-input').style.display = '';
-    document.getElementById('quiz-options').style.display = 'none';
-    document.getElementById('quiz-input').focus();
-  } else {
-    document.getElementById('quiz-input').style.display = 'none';
-    quizOptions = generateOptions(wi);
-    const container = document.getElementById('quiz-options');
-    container.style.display = 'grid';
-    container.innerHTML = quizOptions.map(opt =>
-      `<button class="quiz-option" onclick="selectChoice('${opt.replace(/'/g, "\\'")}', this)">${opt}</button>`
-    ).join('');
-  }
+  if (quizMode === 'spell') { document.getElementById('quiz-input').style.display = ''; document.getElementById('quiz-options').style.display = 'none'; document.getElementById('quiz-input').focus(); }
+  else { document.getElementById('quiz-input').style.display = 'none'; quizOptions = generateOptions(wi); const container = document.getElementById('quiz-options'); container.style.display = 'grid'; container.innerHTML = quizOptions.map(opt => `<button class="quiz-option" onclick="selectChoice('${opt.replace(/'/g, "\\'")}', this)">${opt}</button>`).join(''); }
 }
 
 function checkAnswer() {
   if (quizAnswered) return;
   if (quizWord === null && quizWord !== 0) return;
-  const state = getState();
-  if (!state) return;
-  const bank = getActiveWordBank();
-  const correct = bank[quizWord].word.trim().toLowerCase();
+  const state = getState(); if (!state) return;
+  const bank = getActiveWordBank(); const correct = bank[quizWord].word.trim().toLowerCase();
   const key = getWordKey(quizWord);
-
   if (quizMode === 'spell') {
-    const input = document.getElementById('quiz-input');
-    const userAnswer = input.value.trim().toLowerCase();
+    const input = document.getElementById('quiz-input'); const userAnswer = input.value.trim().toLowerCase();
     if (!userAnswer) return;
     quizAnswered = true;
-    if (userAnswer === correct) {
-      input.className = 'quiz-input correct';
-      document.getElementById('quiz-feedback').innerHTML = '正确！';
-      document.getElementById('quiz-feedback').style.color = 'var(--success)';
-      state.known[quizWord] = true;
-      delete state.unknown[quizWord];
-      advanceStage(state, key);
-    } else {
-      input.className = 'quiz-input wrong';
-      document.getElementById('quiz-feedback').innerHTML = `正确答案：<strong>${bank[quizWord].word}</strong>`;
-      document.getElementById('quiz-feedback').style.color = 'var(--danger)';
-      state.unknown[quizWord] = true;
-      delete state.known[quizWord];
-      resetStage(state, key);
-      recordError(state, key);
-    }
+    if (userAnswer === correct) { input.className = 'quiz-input correct'; document.getElementById('quiz-feedback').innerHTML = '✅ 正确！'; document.getElementById('quiz-feedback').style.color = 'var(--success)'; state.known[quizWord] = true; delete state.unknown[quizWord]; advanceStage(state, key); }
+    else { input.className = 'quiz-input wrong'; document.getElementById('quiz-feedback').innerHTML = `正确答案：<strong>${bank[quizWord].word}</strong>`; document.getElementById('quiz-feedback').style.color = 'var(--danger)'; state.unknown[quizWord] = true; delete state.known[quizWord]; resetStage(state, key); recordError(state, key); }
   }
-  state.reviewedToday++;
-  recordStudyDay(state);
-  checkIn();
-  saveApp();
-  updateUserBar();
-  document.getElementById('quiz-submit').style.display = 'none';
-  document.getElementById('quiz-next').style.display = '';
+  state.reviewedToday++; recordStudyDay(state); checkIn(); saveApp(); updateUserBar();
+  document.getElementById('quiz-submit').style.display = 'none'; document.getElementById('quiz-next').style.display = '';
 }
 
 function selectChoice(chosen, el) {
   if (quizAnswered) return;
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   quizAnswered = true;
-  const bank = getActiveWordBank();
-  const correct = bank[quizWord].word;
-  const key = getWordKey(quizWord);
-  const opts = document.querySelectorAll('.quiz-option');
-  opts.forEach(o => {
-    o.disabled = true;
-    if (o.textContent === correct) o.classList.add('correct');
-  });
-  if (chosen === correct) {
-    el.classList.add('correct');
-    document.getElementById('quiz-feedback').innerHTML = '正确！';
-    document.getElementById('quiz-feedback').style.color = 'var(--success)';
-    state.known[quizWord] = true;
-    delete state.unknown[quizWord];
-    advanceStage(state, key);
-  } else {
-    el.classList.add('wrong');
-    document.getElementById('quiz-feedback').innerHTML = `正确答案：<strong>${correct}</strong>`;
-    document.getElementById('quiz-feedback').style.color = 'var(--danger)';
-    state.unknown[quizWord] = true;
-    delete state.known[quizWord];
-    resetStage(state, key);
-    recordError(state, key);
-  }
-  state.reviewedToday++;
-  recordStudyDay(state);
-  checkIn();
-  saveApp();
-  updateUserBar();
-  document.getElementById('quiz-submit').style.display = 'none';
-  document.getElementById('quiz-next').style.display = '';
+  const bank = getActiveWordBank(); const correct = bank[quizWord].word; const key = getWordKey(quizWord);
+  const opts = document.querySelectorAll('.quiz-option'); opts.forEach(o => { o.disabled = true; if (o.textContent === correct) o.classList.add('correct'); });
+  if (chosen === correct) { el.classList.add('correct'); document.getElementById('quiz-feedback').innerHTML = '✅ 正确！'; document.getElementById('quiz-feedback').style.color = 'var(--success)'; state.known[quizWord] = true; delete state.unknown[quizWord]; advanceStage(state, key); }
+  else { el.classList.add('wrong'); document.getElementById('quiz-feedback').innerHTML = `正确答案：<strong>${correct}</strong>`; document.getElementById('quiz-feedback').style.color = 'var(--danger)'; state.unknown[quizWord] = true; delete state.known[quizWord]; resetStage(state, key); recordError(state, key); }
+  state.reviewedToday++; recordStudyDay(state); checkIn(); saveApp(); updateUserBar();
+  document.getElementById('quiz-submit').style.display = 'none'; document.getElementById('quiz-next').style.display = '';
 }
 
 function nextQuiz() { showQuiz(); }
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && document.getElementById('tab-quiz').classList.contains('active')) {
-    if (quizAnswered) nextQuiz(); else checkAnswer();
-  }
-});
+document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && document.getElementById('tab-quiz').classList.contains('active')) { if (quizAnswered) nextQuiz(); else checkAnswer(); } });
 
 // ============================================================
 // WORD LIST
@@ -1194,34 +1052,18 @@ document.addEventListener('keydown', (e) => {
 function renderWordList() {
   const searchTerm = document.getElementById('search-input').value.toLowerCase();
   const tbody = document.getElementById('word-list-body');
-  const state = getState();
-  const bank = getActiveWordBank();
+  const state = getState(); const bank = getActiveWordBank();
   let filtered = bank.map((w, i) => ({ ...w, index: i }));
-  if (listFilter === 'known' && state) filtered = filtered.filter(w => {
-    const key = getWordKey(w.index);
-    return getWordStage(state, key) >= SR_GRADUATED || state.known[w.index];
-  });
-  else if (listFilter === 'unknown' && state) filtered = filtered.filter(w => {
-    const key = getWordKey(w.index);
-    return getWordStage(state, key) < SR_GRADUATED && !state.known[w.index];
-  });
+  if (listFilter === 'known' && state) filtered = filtered.filter(w => { const key = getWordKey(w.index); return getWordStage(state, key) >= SR_GRADUATED || state.known[w.index]; });
+  else if (listFilter === 'unknown' && state) filtered = filtered.filter(w => { const key = getWordKey(w.index); return getWordStage(state, key) < SR_GRADUATED && !state.known[w.index]; });
   else if (listFilter === 'wrong' && state) filtered = filtered.filter(w => (state.errorCounts[getWordKey(w.index)] || 0) > 0);
   else if (listFilter === 'review' && state) filtered = filtered.filter(w => isDueForReview(state, getWordKey(w.index)));
-  if (searchTerm) {
-    filtered = filtered.filter(w => w.word.toLowerCase().includes(searchTerm) || w.meaning.includes(searchTerm));
-  }
+  if (searchTerm) filtered = filtered.filter(w => w.word.toLowerCase().includes(searchTerm) || w.meaning.includes(searchTerm));
   document.getElementById('list-count').textContent = filtered.length;
   tbody.innerHTML = filtered.map(w => {
-    const key = getWordKey(w.index);
-    const isKnown = state && (getWordStage(state, key) >= SR_GRADUATED || state.known[w.index]);
+    const key = getWordKey(w.index); const isKnown = state && (getWordStage(state, key) >= SR_GRADUATED || state.known[w.index]);
     const errCount = state ? (state.errorCounts[key] || 0) : 0;
-    return `<tr>
-      <td><span class="known-badge${isKnown ? '' : ' unknown-badge'}"></span></td>
-      <td><strong>${w.word}</strong></td>
-      <td style="color:var(--text-secondary);font-size:13px">${w.phonetic || ''}</td>
-      <td>${w.meaning}</td>
-      <td style="color:var(--danger);font-size:13px">${errCount > 0 ? errCount : ''}</td>
-    </tr>`;
+    return `<tr><td><span class="known-badge${isKnown ? '' : ' unknown-badge'}"></span></td><td><strong>${w.word}</strong></td><td style="color:var(--text-secondary);font-size:13px">${w.phonetic || ''}</td><td>${w.meaning}</td><td style="color:var(--danger);font-size:13px">${errCount > 0 ? errCount : ''}</td></tr>`;
   }).join('');
 }
 
@@ -1229,49 +1071,32 @@ function renderWordList() {
 // STATS
 // ============================================================
 function renderHeatmap() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   const container = document.getElementById('heatmap-grid');
-  const today = new Date();
-  const days = [];
-  for (let i = 83; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const key = d.toISOString().slice(0, 10);
-    days.push({ date: d, key, count: (state.studyDays || {})[key] || 0 });
-  }
-  const weeks = [[]];
-  const startDow = days[0].date.getDay();
+  const today = new Date(); const days = [];
+  for (let i = 83; i >= 0; i--) { const d = new Date(today); d.setDate(d.getDate() - i); const key = d.toISOString().slice(0, 10); days.push({ date: d, key, count: (state.studyDays || {})[key] || 0 }); }
+  const weeks = [[]]; const startDow = days[0].date.getDay();
   for (let k = 0; k < startDow; k++) weeks[0].push(null);
-  for (const day of days) {
-    const last = weeks[weeks.length - 1];
-    last.push(day);
-    if (last.length === 7 && (weeks.length * 7 - startDow) < days.length) weeks.push([]);
-  }
-
+  for (const day of days) { const last = weeks[weeks.length - 1]; last.push(day); if (last.length === 7 && (weeks.length * 7 - startDow) < days.length) weeks.push([]); }
   const wdLabels = ['日','一','二','三','四','五','六'];
   let html = '<div class="heatmap-grid">';
   for (let col = 0; col < 7; col++) {
     html += '<div class="heatmap-col">';
-    if (col % 2 === 0) html += `<div class="heatmap-weekday">${wdLabels[col]}</div>`;
-    else html += '<div style="width:13px;height:12px"></div>';
+    html += col % 2 === 0 ? `<div class="heatmap-weekday">${wdLabels[col]}</div>` : '<div style="width:13px;height:12px"></div>';
     for (let row = 0; row < weeks.length; row++) {
       const cell = weeks[row] && weeks[row][col];
       if (!cell) { html += '<div class="heatmap-cell" style="visibility:hidden"></div>'; continue; }
-      let cls = '';
-      if (cell.count > 0) cls = cell.count >= 30 ? 'l4' : cell.count >= 15 ? 'l3' : cell.count >= 5 ? 'l2' : 'l1';
+      let cls = ''; if (cell.count > 0) cls = cell.count >= 30 ? 'l4' : cell.count >= 15 ? 'l3' : cell.count >= 5 ? 'l2' : 'l1';
       html += `<div class="heatmap-cell ${cls}" title="${cell.key}: ${cell.count}次"></div>`;
     }
     html += '</div>';
   }
-  html += '</div>';
-  html += '<div class="heatmap-legend">Less <span></span><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span> More</div>';
+  html += '</div><div class="heatmap-legend">Less <span></span><span class="l1"></span><span class="l2"></span><span class="l3"></span><span class="l4"></span> More</div>';
   container.innerHTML = html;
 }
 
 function renderStats() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   const total = WORD_BANK.length + (state.customWords ? state.customWords.length : 0);
   const known = Object.keys(state.known).length;
   const pct = total > 0 ? Math.round((known / total) * 100) : 0;
@@ -1289,24 +1114,13 @@ function renderStats() {
 }
 
 function resetProgress() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   if (confirm('确定要重置所有学习进度吗？此操作不可撤销。')) {
-    state.known = {};
-    state.unknown = {};
-    state.reviewedToday = 0;
-    state.lastReviewDate = '';
-    state.streak = 0;
-    state.totalTime = 0;
-    state.stage = {};
-    state.nextReview = {};
-    state.errorCounts = {};
-    state.studyDays = {};
-    saveApp();
-    currentIndex = 0;
-    refreshAll();
-    updateUserBar();
-    showToast('学习进度已重置');
+    state.known = {}; state.unknown = {}; state.reviewedToday = 0; state.lastReviewDate = ''; state.streak = 0; state.totalTime = 0;
+    state.stage = {}; state.nextReview = {}; state.errorCounts = {}; state.studyDays = {};
+    state.readingWords = {}; state.readingHistory = [];
+    vocabWordSet = null;
+    saveApp(); currentIndex = 0; refreshAll(); updateUserBar(); showToast('学习进度已重置');
   }
 }
 
@@ -1314,214 +1128,406 @@ function resetProgress() {
 // EXPORT / IMPORT
 // ============================================================
 function exportData() {
-  const data = JSON.stringify(app, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kaoyan-vocab-backup-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-  showToast('数据已导出');
+  const data = JSON.stringify(app, null, 2); const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = `kaoyan-vocab-backup-${new Date().toISOString().slice(0,10)}.json`; a.click();
+  URL.revokeObjectURL(url); showToast('数据已导出');
 }
 
-function importData() {
-  document.getElementById('import-file-input').click();
-}
+function importData() { document.getElementById('import-file-input').click(); }
 
 function handleImportFile(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+  const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
   reader.onload = function(ev) {
     try {
-      const data = JSON.parse(ev.target.result);
-      if (!data.users) throw new Error('Invalid format');
+      const data = JSON.parse(ev.target.result); if (!data.users) throw new Error('Invalid format');
       if (!confirm(`确定要导入数据吗？这将覆盖当前数据。\n文件中包含 ${Object.keys(data.users).length} 个用户。`)) return;
-      app = data;
-      saveApp();
-      currentUser = app.currentUser;
-      if (currentUser && app.users[currentUser]) {
-        document.getElementById('login-overlay').style.display = 'none';
-        refreshAll();
-        updateUserBar();
-        showToast('数据已成功导入');
-      } else {
-        showLogin();
-      }
-    } catch(err) {
-      showToast('导入失败：文件格式不正确');
-    }
+      app = data; saveApp(); currentUser = app.currentUser; vocabWordSet = null;
+      if (currentUser && app.users[currentUser]) { document.getElementById('login-overlay').style.display = 'none'; refreshAll(); updateUserBar(); showToast('数据已成功导入'); }
+      else { showLogin(); }
+    } catch(err) { showToast('导入失败：文件格式不正确'); }
   };
-  reader.readAsText(file);
-  e.target.value = '';
+  reader.readAsText(file); e.target.value = '';
 }
 
 // ============================================================
 // CUSTOM WORD LISTS
 // ============================================================
 function showCustomWordsDialog() {
-  const state = getState();
-  if (!state) return;
+  const state = getState(); if (!state) return;
   const text = (state.customWords || []).map(w => `${w.word},${w.phonetic || ''},${w.meaning}`).join('\n');
   document.getElementById('custom-words-input').value = text;
   document.getElementById('custom-count').textContent = (state.customWords || []).length;
   document.getElementById('custom-words-overlay').style.display = '';
 }
 
-function closeCustomWordsDialog() {
-  document.getElementById('custom-words-overlay').style.display = 'none';
-}
+function closeCustomWordsDialog() { document.getElementById('custom-words-overlay').style.display = 'none'; }
 
 function saveCustomWords() {
-  const state = getState();
-  if (!state) return;
-  const text = document.getElementById('custom-words-input').value.trim();
-  const words = [];
-  if (text) {
-    text.split('\n').forEach(line => {
-      line = line.trim();
-      if (!line) return;
-      let word, phonetic, meaning;
-      if (line.includes(';')) {
-        const parts = line.split(';');
-        if (parts.length >= 2) { word = parts[0].trim(); meaning = parts.slice(1).join(';').trim(); phonetic = ''; }
-      } else {
-        const parts = line.split(',');
-        if (parts.length >= 2) { word = parts[0].trim(); meaning = parts[parts.length-1].trim(); phonetic = parts.length >= 3 ? parts[1].trim() : ''; }
-      }
-      if (word && meaning) words.push({ word, phonetic: phonetic || '', meaning });
-    });
-  }
-  state.customWords = words;
-  saveApp();
-  closeCustomWordsDialog();
-  currentIndex = 0;
-  refreshAll();
-  showToast(`自定义词库已保存 (${words.length} 词)`);
+  const state = getState(); if (!state) return;
+  const text = document.getElementById('custom-words-input').value.trim(); const words = [];
+  if (text) { text.split('\n').forEach(line => { line = line.trim(); if (!line) return; let word, phonetic, meaning; if (line.includes(';')) { const parts = line.split(';'); if (parts.length >= 2) { word = parts[0].trim(); meaning = parts.slice(1).join(';').trim(); phonetic = ''; } } else { const parts = line.split(','); if (parts.length >= 2) { word = parts[0].trim(); meaning = parts[parts.length-1].trim(); phonetic = parts.length >= 3 ? parts[1].trim() : ''; } } if (word && meaning) words.push({ word, phonetic: phonetic || '', meaning }); }); }
+  state.customWords = words; vocabWordSet = null;
+  saveApp(); closeCustomWordsDialog(); currentIndex = 0; refreshAll(); showToast(`自定义词库已保存 (${words.length} 词)`);
 }
 
-function clearCustomWords() {
-  if (!confirm('确定要清空自定义词库吗？')) return;
-  const state = getState();
-  if (!state) return;
-  state.customWords = [];
-  saveApp();
-  closeCustomWordsDialog();
-  refreshAll();
-  showToast('自定义词库已清空');
-}
+function clearCustomWords() { if (!confirm('确定要清空自定义词库吗？')) return; const state = getState(); if (!state) return; state.customWords = []; vocabWordSet = null; saveApp(); closeCustomWordsDialog(); refreshAll(); showToast('自定义词库已清空'); }
 
 // ============================================================
 // LEADERBOARD
 // ============================================================
-const LB_REPO = 'ke0408/kaoyan-vocab';
-const LB_FILE = 'leaderboard.json';
+const LB_REPO = 'ke0408/kaoyan-vocab'; const LB_FILE = 'leaderboard.json';
 const LB_RAW_URL = `https://raw.githubusercontent.com/${LB_REPO}/main/${LB_FILE}`;
 const LB_API_URL = `https://api.github.com/repos/${LB_REPO}/contents/${LB_FILE}`;
 
-function getLBToken() {
-  const state = getState();
-  return state ? state.lbToken || '' : '';
-}
+function getLBToken() { const state = getState(); return state ? state.lbToken || '' : ''; }
 
 async function syncToLeaderboard() {
-  const state = getState();
-  if (!state) return;
-  const token = getLBToken();
-  if (!token) return; // Only sync if user configured a token
+  const state = getState(); if (!state) return;
+  const token = getLBToken(); if (!token) return;
   try {
     const lb = await fetchLeaderboard();
-    const entry = {
-      uid: currentUser,
-      name: state.name || '匿名',
-      totalTime: state.totalTime || 0,
-      reviewedToday: state.reviewedToday || 0,
-      streak: state.streak || 0,
-      known: Object.keys(state.known || {}).length,
-      lastActive: new Date().toISOString(),
-    };
+    const entry = { uid: currentUser, name: state.name || '匿名', totalTime: state.totalTime || 0, reviewedToday: state.reviewedToday || 0, streak: state.streak || 0, known: Object.keys(state.known || {}).length, lastActive: new Date().toISOString() };
     lb[currentUser] = entry;
-
     let sha = null;
-    try {
-      const r = await fetch(LB_API_URL, { headers: { Authorization: `token ${token}` } });
-      const d = await r.json();
-      sha = d.sha;
-    } catch(e) {}
-
+    try { const r = await fetch(LB_API_URL, { headers: { Authorization: `token ${token}` } }); const d = await r.json(); sha = d.sha; } catch(e) {}
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(lb, null, 2))));
-    const body = { message: 'Update leaderboard', content: content, branch: 'main' };
-    if (sha) body.sha = sha;
-
-    await fetch(LB_API_URL, {
-      method: 'PUT',
-      headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
+    const body = { message: 'Update leaderboard', content: content, branch: 'main' }; if (sha) body.sha = sha;
+    await fetch(LB_API_URL, { method: 'PUT', headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   } catch(e) {}
 }
 
-async function fetchLeaderboard() {
-  try {
-    const r = await fetch(LB_RAW_URL + '?t=' + Date.now());
-    if (r.ok) return await r.json();
-  } catch(e) {}
-  return {};
-}
+async function fetchLeaderboard() { try { const r = await fetch(LB_RAW_URL + '?t=' + Date.now()); if (r.ok) return await r.json(); } catch(e) {} return {}; }
 
 async function renderLeaderboard() {
-  const container = document.getElementById('lb-rows');
-  container.innerHTML = '<div class="lb-update">加载中...</div>';
-
+  const container = document.getElementById('lb-rows'); container.innerHTML = '<div class="lb-update">加载中...</div>';
   try {
     const lb = await fetchLeaderboard();
     const entries = Object.values(lb).sort((a, b) => (b.totalTime || 0) - (a.totalTime || 0));
-
-    if (entries.length === 0) {
-      container.innerHTML = '<div class="lb-update">暂无数据，开始学习后自动上榜！</div>';
-    } else {
-      container.innerHTML = entries.slice(0, 20).map((e, i) => {
-        let rankClass = 'normal';
-        if (i === 0) rankClass = 'gold';
-        else if (i === 1) rankClass = 'silver';
-        else if (i === 2) rankClass = 'bronze';
-        const isMe = e.uid === currentUser;
-        return `<div class="leaderboard-row" style="${isMe ? 'background:var(--primary-light)' : ''}">
-          <div class="rank ${rankClass}">${i + 1}</div>
-          <div class="lb-name">${e.name || '匿名'}${isMe ? ' (你)' : ''}</div>
-          <div class="lb-stat">⏱️ ${getUsageTimeString(e.totalTime || 0)}</div>
-          <div class="lb-stat">✅ ${e.known || 0}词</div>
-          <div class="lb-stat">🔥 ${e.streak || 0}天</div>
-        </div>`;
-      }).join('');
-    }
+    if (entries.length === 0) { container.innerHTML = '<div class="lb-update">暂无数据</div>'; }
+    else { container.innerHTML = entries.slice(0, 20).map((e, i) => { let rankClass = 'normal'; if (i === 0) rankClass = 'gold'; else if (i === 1) rankClass = 'silver'; else if (i === 2) rankClass = 'bronze'; const isMe = e.uid === currentUser; return `<div class="leaderboard-row" style="${isMe ? 'background:var(--primary-light)' : ''}"><div class="rank ${rankClass}">${i + 1}</div><div class="lb-name">${e.name || '匿名'}${isMe ? ' (你)' : ''}</div><div class="lb-stat">⏱️ ${getUsageTimeString(e.totalTime || 0)}</div><div class="lb-stat">✅ ${e.known || 0}词</div><div class="lb-stat">🔥 ${e.streak || 0}天</div></div>`; }).join(''); }
     document.getElementById('lb-update-time').textContent = '更新于 ' + new Date().toLocaleTimeString();
-  } catch(e) {
-    container.innerHTML = '<div class="lb-update">排行榜暂不可用</div>';
-  }
+  } catch(e) { container.innerHTML = '<div class="lb-update">排行榜暂不可用</div>'; }
 }
 
-async function syncLeaderboard() {
-  const token = getLBToken();
-  if (!token) {
-    showToast('请在设置中配置 GitHub Token 以使用排行榜');
-    return;
-  }
-  await syncToLeaderboard();
-  await renderLeaderboard();
-  showToast('排行榜已刷新');
-}
+async function syncLeaderboard() { const token = getLBToken(); if (!token) { showToast('请在设置中配置 GitHub Token'); return; } await syncToLeaderboard(); await renderLeaderboard(); showToast('排行榜已刷新'); }
 
 // ============================================================
 // REFRESH ALL
 // ============================================================
-function refreshAll() {
-  showCard();
-  renderWordList();
-  renderStats();
-  updateUserBar();
+function refreshAll() { showCard(); renderWordList(); renderStats(); updateUserBar(); }
+
+// ============================================================
+// READING - RSS FEEDS
+// ============================================================
+const RSS_FEEDS = [
+  { id: 'bbc', name: 'BBC News', url: 'http://feeds.bbci.co.uk/news/world/rss.xml', icon: '📻' },
+  { id: 'guardian', name: 'The Guardian', url: 'https://www.theguardian.com/international/rss', icon: '📰' },
+  { id: 'sciam', name: 'Scientific American', url: 'https://www.scientificamerican.com/feed/', icon: '🔬' },
+  { id: 'sciencedaily', name: 'Science Daily', url: 'https://www.sciencedaily.com/rss/all.xml', icon: '🧪' },
+  { id: 'npr', name: 'NPR News', url: 'https://feeds.npr.org/1001/rss.xml', icon: '🎙️' },
+  { id: 'nature', name: 'Nature', url: 'https://www.nature.com/nature.rss', icon: '🌿' },
+  { id: 'economist', name: 'The Economist', url: 'https://www.economist.com/finance-and-economics/rss.xml', icon: '💼' },
+  { id: 'atlantic', name: 'The Atlantic', url: 'https://www.theatlantic.com/feed/all/', icon: '📖' },
+  { id: 'time', name: 'TIME', url: 'https://time.com/feed/', icon: '⏰' },
+  { id: 'nytimes', name: 'The New York Times', url: 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml', icon: '🗽' },
+  { id: 'reuters', name: 'Reuters', url: 'https://www.reutersagency.com/feed/?best-topics=world&post_type=best', icon: '📡' },
+  { id: 'wired', name: 'WIRED', url: 'https://www.wired.com/feed/rss', icon: '💻' },
+];
+
+const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+function buildVocabWordSet() {
+  if (vocabWordSet) return vocabWordSet;
+  const bank = getActiveWordBank();
+  vocabWordSet = new Set();
+  bank.forEach(w => vocabWordSet.add(w.word.toLowerCase()));
+  return vocabWordSet;
 }
+
+function lookupWordInBank(rawWord) {
+  const lower = rawWord.toLowerCase().replace(/[^a-zA-Z-]/g, '');
+  if (!lower || lower.length < 2) return null;
+  const bank = getActiveWordBank();
+  for (let i = 0; i < bank.length; i++) { if (bank[i].word.toLowerCase() === lower) return { entry: bank[i], index: i }; }
+  return null;
+}
+
+// ============================================================
+// READING - FETCH ARTICLES
+// ============================================================
+async function fetchArticles() {
+  const select = document.getElementById('reading-rss-select');
+  const feedId = select.value;
+  if (!feedId) { showToast('请先选择文章来源'); return; }
+  const feed = RSS_FEEDS.find(f => f.id === feedId);
+  if (!feed) return;
+  const listEl = document.getElementById('reading-article-list');
+  listEl.innerHTML = '<div class="reading-loading">⏳ 正在获取文章...</div>';
+  document.getElementById('btn-fetch-rss').disabled = true;
+  try {
+    const apiUrl = RSS2JSON_API + encodeURIComponent(feed.url);
+    const resp = await fetch(apiUrl);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    if (data.status !== 'ok') throw new Error(data.message || 'RSS fetch failed');
+    fetchedArticles = (data.items || []).map((item, idx) => ({
+      id: feedId + '_' + idx,
+      title: stripHTML(item.title || 'Untitled'),
+      link: item.link || '',
+      description: stripHTML(item.description || ''),
+      content: item.content || item.description || '',
+      pubDate: item.pubDate ? new Date(item.pubDate).toLocaleDateString('zh-CN') : '',
+      author: item.author || feed.name,
+      source: feed.name,
+      sourceIcon: feed.icon,
+      thumbnail: item.thumbnail || '',
+    }));
+    renderArticleList();
+    if (fetchedArticles.length === 0) listEl.innerHTML = '<div class="reading-loading">未获取到文章，请尝试其他来源或使用"粘贴文章"</div>';
+  } catch(e) {
+    listEl.innerHTML = `<div class="reading-loading">获取失败: ${e.message}<br><small>建议尝试其他来源，或使用"粘贴文章"功能</small></div>`;
+  } finally { document.getElementById('btn-fetch-rss').disabled = false; }
+}
+
+function renderArticleList() {
+  const listEl = document.getElementById('reading-article-list');
+  if (fetchedArticles.length === 0) { listEl.innerHTML = '<div class="reading-loading">暂无文章</div>'; return; }
+  listEl.innerHTML = fetchedArticles.map((a, i) => `<div class="reading-article-card" onclick="openArticle(${i})">
+    <div class="ra-title">${escapeHTML(a.title)}</div>
+    <div class="ra-meta"><span>${a.sourceIcon} ${a.source}</span><span>${a.pubDate}</span>${a.author ? `<span>✍️ ${escapeHTML(a.author)}</span>` : ''}</div>
+    <div class="ra-snippet">${escapeHTML(a.description).substring(0, 200)}</div>
+  </div>`).join('');
+}
+
+// ============================================================
+// READING - ARTICLE VIEWER
+// ============================================================
+function openArticle(index) {
+  if (index < 0 || index >= fetchedArticles.length) return;
+  const article = fetchedArticles[index]; currentArticle = article;
+  document.getElementById('reading-article-list-container').style.display = 'none';
+  document.getElementById('reading-viewer').style.display = '';
+  document.getElementById('reading-title').textContent = article.title;
+  document.getElementById('reading-source').textContent = article.sourceIcon + ' ' + article.source;
+  document.getElementById('reading-date').textContent = article.pubDate || '未知日期';
+  document.getElementById('reading-author').textContent = article.author ? '作者: ' + article.author : '';
+  const contentHTML = article.content || article.description || '';
+  const processed = processArticleHTML(contentHTML);
+  document.getElementById('reading-content').innerHTML = processed;
+  currentArticleHTML = processed;
+  updateReadingVocabStats();
+  saveReadingHistory(article);
+  document.getElementById('reading-content').scrollTop = 0;
+  window.scrollTo(0, 0);
+}
+
+function processArticleHTML(html) {
+  let clean = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+  let text = stripHTML(clean).replace(/\n{3,}/g, '\n\n').trim();
+  const paragraphs = text.split(/\n\n+/);
+  return paragraphs.map(p => { const trimmed = p.replace(/\s+/g, ' ').trim(); if (!trimmed) return ''; return '<p>' + highlightVocabWords(trimmed) + '</p>'; }).join('\n');
+}
+
+function highlightVocabWords(text) {
+  const wordSet = buildVocabWordSet(); const state = getState();
+  const wordRegex = /\b[a-zA-Z]+(?:-[a-zA-Z]+)*(?:'[a-zA-Z]+)?\b/g;
+  return text.replace(wordRegex, (match) => {
+    const lower = match.toLowerCase();
+    if (wordSet.has(lower)) {
+      const result = lookupWordInBank(match); if (!result) return match;
+      const key = getWordKey(result.index); const stage = getWordStage(state, key);
+      const isLearned = stage >= SR_GRADUATED || (state && state.known[result.index]);
+      const cssClass = isLearned ? 'vocab-word learned' : 'vocab-word unlearned';
+      return `<span class="${cssClass}" data-word="${escapeHTML(result.entry.word)}" data-word-index="${result.index}" onclick="onVocabWordClick(event, this)">${match}</span>`;
+    }
+    return match;
+  });
+}
+
+function updateReadingVocabStats() {
+  const contentEl = document.getElementById('reading-content');
+  const allHighlights = contentEl.querySelectorAll('.vocab-word');
+  const learnedCount = contentEl.querySelectorAll('.vocab-word.learned').length;
+  const unlearnedCount = allHighlights.length - learnedCount;
+  const statsEl = document.getElementById('reading-vocab-stats');
+  if (allHighlights.length > 0) {
+    statsEl.style.display = '';
+    statsEl.innerHTML = `<span><span class="reading-vocab-dot found"></span> 文中考研词汇: <b>${allHighlights.length}</b></span><span><span class="reading-vocab-dot unknown-v"></span> 未掌握: <b>${unlearnedCount}</b></span><span><span class="reading-vocab-dot found"></span> 已掌握: <b>${learnedCount}</b></span>`;
+  } else { statsEl.style.display = 'none'; }
+}
+
+function onVocabWordClick(event, el) {
+  event.stopPropagation();
+  const word = el.dataset.word; const wordIndex = parseInt(el.dataset.wordIndex);
+  const result = lookupWordInBank(word); if (!result) return;
+  tooltipWord = word; tooltipWordEntry = result.entry;
+  const state = getState(); const key = getWordKey(result.index);
+  const stage = getWordStage(state, key);
+  const isLearned = stage >= SR_GRADUATED || (state && state.known[result.index]);
+  const isSaved = state && state.readingWords && state.readingWords[key];
+  const errCount = state ? (state.errorCounts[key] || 0) : 0;
+  document.getElementById('rt-word').textContent = result.entry.word;
+  document.getElementById('rt-phonetic').textContent = result.entry.phonetic || '';
+  document.getElementById('rt-meaning').textContent = result.entry.meaning;
+  document.getElementById('rt-status').textContent = (isLearned ? '✅ 已掌握' : '📖 学习中') + (errCount > 0 ? ` · 错${errCount}次` : '');
+  const saveBtn = document.getElementById('rt-save-btn');
+  if (isSaved) { saveBtn.textContent = '⭐ 已收藏'; saveBtn.classList.remove('btn-primary'); saveBtn.classList.add('btn-success'); }
+  else { saveBtn.textContent = '⭐ 加入生词'; saveBtn.classList.add('btn-primary'); saveBtn.classList.remove('btn-success'); }
+  const rect = el.getBoundingClientRect();
+  let top = rect.bottom + 8; let left = rect.left;
+  const tooltip = document.getElementById('reading-tooltip');
+  tooltip.classList.add('show');
+  setTimeout(() => {
+    const ttRect = tooltip.getBoundingClientRect();
+    if (left + ttRect.width > window.innerWidth - 16) left = window.innerWidth - ttRect.width - 16;
+    if (left < 16) left = 16;
+    if (top + ttRect.height > window.innerHeight - 16) top = rect.top - ttRect.height - 8;
+    tooltip.style.top = top + 'px'; tooltip.style.left = left + 'px';
+  }, 0);
+}
+
+function saveReadingWord() {
+  const state = getState(); if (!state || !tooltipWord) return;
+  const result = lookupWordInBank(tooltipWord); if (!result) return;
+  const key = getWordKey(result.index);
+  if (!state.readingWords) state.readingWords = {};
+  if (state.readingWords[key]) {
+    delete state.readingWords[key];
+    document.getElementById('rt-save-btn').textContent = '⭐ 加入生词';
+    document.getElementById('rt-save-btn').classList.add('btn-primary');
+    document.getElementById('rt-save-btn').classList.remove('btn-success');
+    showToast('已从生词本移除');
+  } else {
+    state.readingWords[key] = Date.now();
+    state.unknown[result.index] = true; delete state.known[result.index];
+    resetStage(state, key);
+    document.getElementById('rt-save-btn').textContent = '⭐ 已收藏';
+    document.getElementById('rt-save-btn').classList.add('btn-success');
+    document.getElementById('rt-save-btn').classList.remove('btn-primary');
+    showToast('已加入生词本，并加入复习队列');
+  }
+  saveApp(); renderSavedWords();
+}
+
+function backToArticleList() {
+  document.getElementById('reading-viewer').style.display = 'none';
+  document.getElementById('reading-article-list-container').style.display = '';
+  document.getElementById('reading-tooltip').classList.remove('show');
+  renderSavedWords(); renderReadingHistory();
+  window.scrollTo(0, 0);
+}
+
+// ============================================================
+// READING - PASTE ARTICLE
+// ============================================================
+function showPasteDialog() { document.getElementById('reading-paste-overlay').classList.add('show'); document.getElementById('paste-textarea').focus(); }
+function hidePasteDialog() { document.getElementById('reading-paste-overlay').classList.remove('show'); document.getElementById('paste-textarea').value = ''; }
+
+function processPastedArticle() {
+  const text = document.getElementById('paste-textarea').value.trim();
+  if (!text) { showToast('请先粘贴文章内容'); return; }
+  hidePasteDialog();
+  currentArticle = { title: '粘贴文章 (' + new Date().toLocaleDateString('zh-CN') + ')', source: '用户粘贴', sourceIcon: '📋', pubDate: new Date().toLocaleDateString('zh-CN'), author: '', content: text, description: text.substring(0, 200) + '...', link: '' };
+  document.getElementById('reading-article-list-container').style.display = 'none';
+  document.getElementById('reading-viewer').style.display = '';
+  document.getElementById('reading-title').textContent = currentArticle.title;
+  document.getElementById('reading-source').textContent = '📋 用户粘贴';
+  document.getElementById('reading-date').textContent = currentArticle.pubDate;
+  document.getElementById('reading-author').textContent = '';
+  const processed = processArticleHTML(text);
+  document.getElementById('reading-content').innerHTML = processed;
+  currentArticleHTML = processed;
+  updateReadingVocabStats();
+  saveReadingHistory(currentArticle);
+  showToast('文章已加载，点击高亮词汇查看释义');
+}
+
+// ============================================================
+// READING - SAVED WORDS & HISTORY
+// ============================================================
+function renderSavedWords() {
+  const state = getState(); const section = document.getElementById('reading-saved-section'); const grid = document.getElementById('reading-saved-grid');
+  if (!state || !state.readingWords || Object.keys(state.readingWords).length === 0) {
+    // Show section but with empty message
+    section.style.display = state && state.readingWords && Object.keys(state.readingWords).length === 0 ? '' : '';
+    const entryCount = state && state.readingWords ? Object.keys(state.readingWords).length : 0;
+    if (entryCount === 0) { section.style.display = ''; grid.innerHTML = '<span style="font-size:13px;color:var(--text-secondary)">暂无收藏单词，阅读时点击高亮词汇即可收藏</span>'; return; }
+    return;
+  }
+  section.style.display = '';
+  const bank = getActiveWordBank();
+  const entries = Object.entries(state.readingWords);
+  grid.innerHTML = entries.map(([key, ts]) => {
+    let wi; if (key.startsWith('c')) wi = parseInt(key.substring(1)) + WORD_BANK.length; else wi = parseInt(key);
+    const w = bank[wi]; if (!w) return '';
+    return `<span class="reading-saved-chip" onclick="onSavedWordClick('${key}',${wi})" title="点击查看详情">${escapeHTML(w.word)}<span class="remove" onclick="event.stopPropagation();removeReadingWord('${key}')">×</span></span>`;
+  }).join('');
+}
+
+function onSavedWordClick(key, wi) {
+  const bank = getActiveWordBank(); const w = bank[wi]; if (!w) return;
+  tooltipWord = w.word; tooltipWordEntry = w;
+  const state = getState();
+  const stage = getWordStage(state, key);
+  document.getElementById('rt-word').textContent = w.word;
+  document.getElementById('rt-phonetic').textContent = w.phonetic || '';
+  document.getElementById('rt-meaning').textContent = w.meaning;
+  document.getElementById('rt-status').textContent = (stage >= SR_GRADUATED ? '✅ 已掌握' : '📖 学习中');
+  document.getElementById('rt-save-btn').textContent = '⭐ 已收藏';
+  document.getElementById('rt-save-btn').classList.add('btn-success');
+  document.getElementById('rt-save-btn').classList.remove('btn-primary');
+  const tooltip = document.getElementById('reading-tooltip');
+  tooltip.classList.add('show');
+  tooltip.style.top = '50%'; tooltip.style.left = '50%'; tooltip.style.transform = 'translate(-50%, -50%)';
+}
+
+function removeReadingWord(key) { const state = getState(); if (!state || !state.readingWords) return; delete state.readingWords[key]; saveApp(); renderSavedWords(); showToast('已从生词本移除'); }
+
+function exportReadingWords() {
+  const state = getState(); if (!state || !state.readingWords || Object.keys(state.readingWords).length === 0) { showToast('暂无数据可导出'); return; }
+  const bank = getActiveWordBank();
+  const lines = Object.keys(state.readingWords).map(key => { let wi; if (key.startsWith('c')) wi = parseInt(key.substring(1)) + WORD_BANK.length; else wi = parseInt(key); const w = bank[wi]; return w ? `${w.word}\t${w.phonetic || ''}\t${w.meaning}` : ''; }).filter(Boolean);
+  const text = lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => showToast(`已复制 ${lines.length} 个单词到剪贴板`)).catch(() => showToast('复制失败，请手动复制'));
+}
+
+function saveReadingHistory(article) {
+  const state = getState(); if (!state) return;
+  if (!state.readingHistory) state.readingHistory = [];
+  const exists = state.readingHistory.find(h => h.title === article.title); if (exists) return;
+  state.readingHistory.unshift({ title: article.title, source: article.source, link: article.link, date: new Date().toISOString(), wordCount: document.querySelectorAll('#reading-content .vocab-word').length });
+  if (state.readingHistory.length > 50) state.readingHistory = state.readingHistory.slice(0, 50);
+  saveApp();
+}
+
+function renderReadingHistory() {
+  const state = getState(); const section = document.getElementById('reading-history-section'); const list = document.getElementById('reading-history-list');
+  if (!state || !state.readingHistory || state.readingHistory.length === 0) { section.style.display = ''; list.innerHTML = '<span style="font-size:13px;color:var(--text-secondary)">暂无阅读记录</span>'; return; }
+  section.style.display = '';
+  list.innerHTML = state.readingHistory.slice(0, 10).map(h => `<div class="reading-history-item"><div class="rh-title" onclick="reopenFromHistory('${escapeHTML(h.title)}')">${escapeHTML(h.title)}</div><div class="rh-meta">${h.source} · ${new Date(h.date).toLocaleDateString('zh-CN')} · ${h.wordCount || 0} 个考研词汇</div></div>`).join('');
+}
+
+function reopenFromHistory(title) { const idx = fetchedArticles.findIndex(a => a.title === title); if (idx >= 0) { openArticle(idx); return; } showToast('该文章已不在缓存中，请重新获取'); }
+
+function initReadingTab() {
+  const select = document.getElementById('reading-rss-select');
+  if (select.options.length <= 1) { RSS_FEEDS.forEach(f => { const opt = document.createElement('option'); opt.value = f.id; opt.textContent = f.icon + ' ' + f.name; select.appendChild(opt); }); }
+  buildVocabWordSet(); renderSavedWords(); renderReadingHistory();
+}
+
+// ============================================================
+// READING - UTILITIES
+// ============================================================
+function stripHTML(html) { const tmp = document.createElement('div'); tmp.innerHTML = html; return tmp.textContent || tmp.innerText || ''; }
+function escapeHTML(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+
+// Close tooltip on outside click
+document.addEventListener('click', function(e) {
+  const tooltip = document.getElementById('reading-tooltip');
+  if (!e.target.closest('.vocab-word') && !e.target.closest('.reading-tooltip')) tooltip.classList.remove('show');
+});
 
 // ============================================================
 // EVENT DELEGATION
@@ -1537,34 +1543,28 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     if (tabId === 'stats') renderStats();
     if (tabId === 'quiz') showQuiz();
     if (tabId === 'leaderboard') renderLeaderboard();
+    if (tabId === 'reading') initReadingTab();
   });
 });
 
 document.querySelectorAll('#flashcard-filter .mode-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#flashcard-filter .mode-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    currentIndex = 0;
-    showCard();
+    btn.classList.add('active'); currentFilter = btn.dataset.filter; currentIndex = 0; showCard();
   });
 });
 
 document.querySelectorAll('#quiz-mode .mode-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#quiz-mode .mode-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    quizMode = btn.dataset.mode;
-    showQuiz();
+    btn.classList.add('active'); quizMode = btn.dataset.mode; showQuiz();
   });
 });
 
 document.querySelectorAll('#list-filter-row .filter-chip').forEach(chip => {
   chip.addEventListener('click', () => {
     document.querySelectorAll('#list-filter-row .filter-chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    listFilter = chip.dataset.filter;
-    renderWordList();
+    chip.classList.add('active'); listFilter = chip.dataset.filter; renderWordList();
   });
 });
 
@@ -1577,35 +1577,21 @@ function init() {
   if (app.currentUser && app.users[app.currentUser]) {
     currentUser = app.currentUser;
     document.getElementById('login-overlay').style.display = 'none';
-    startSession();
-    refreshAll();
-    updateUserBar();
-    requestNotifyPermission();
+    startSession(); refreshAll(); updateUserBar(); requestNotifyPermission();
   } else if (Object.keys(app.users).length > 0) {
     currentUser = Object.keys(app.users)[0];
-    app.currentUser = currentUser;
-    saveApp();
+    app.currentUser = currentUser; saveApp();
     document.getElementById('login-overlay').style.display = 'none';
-    startSession();
-    refreshAll();
-    updateUserBar();
-    requestNotifyPermission();
-  } else {
-    showLogin();
-  }
+    startSession(); refreshAll(); updateUserBar(); requestNotifyPermission();
+  } else { showLogin(); }
 }
 
 init();
 
-// Auto-sync leaderboard every 60 seconds (if token configured)
 setInterval(() => { if (currentUser && getLBToken()) syncToLeaderboard(); }, 60000);
 
-// Initial leaderboard sync after login (if token configured)
 const origDoLogin = doLogin;
-doLogin = function() {
-  origDoLogin();
-  setTimeout(() => { if (getLBToken()) syncToLeaderboard(); }, 2000);
-};
+doLogin = function() { origDoLogin(); setTimeout(() => { if (getLBToken()) syncToLeaderboard(); }, 2000); };
 </script>
 </body>
 </html>
